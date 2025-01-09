@@ -20,6 +20,7 @@ pub fn build(b: *std.Build) void {
     // running `zig build`).
     const exe_to_build = b.option([]const u8, "target_exe", "choose executable to build and run");
     if (exe_to_build) |exe_name| {
+        // TODO: If C source file is specified, compile C
         const name = std.fs.path.stem(exe_name);
         const path = std.fs.path.join(b.allocator, &.{ "src/", exe_name }) catch @panic("OOM");
         const exe = b.addExecutable(.{
